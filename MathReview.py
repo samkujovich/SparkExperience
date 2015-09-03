@@ -1,15 +1,20 @@
 labVersion = 'cs190_week1_v_1_2'
 
 
-# ** Math review **
+# ### ** Math review **
 
-# ** Scalar multiplication: vectors **
+# #### ** Scalar multiplication: vectors **
+# #### calculate the product of a scalar and a vector by hand and enter the result in the code cell below.  Scalar multiplication is straightforward.  The resulting vector equals the product of the scalar, which is a single value, and each item in the original vector.
+
+
 # Manually calculate your answer and represent the vector as a list of integers values.
+# For example, [2, 4, 8].
 x = [3, -6, 0]
 y = [4, 8, 16]
 
 
 # TEST Scalar multiplication
+# Import test library
 from test_helper import Test
 Test.assertEqualsHashed(x, 'e460f5b87531a2b60e0f55c31b2e49914f779981',
                         'incorrect value for vector x')
@@ -17,8 +22,9 @@ Test.assertEqualsHashed(y, 'e2d37ff11427dbac7f833a5a7039c0de5a740b1e',
                         'incorrect value for vector y')
 
 
-# ** Element-wise multiplication: vectors **
-# calculate the element-wise multiplication of two vectors by hand and enter the result in the code cell below.
+# #### ** Element-wise multiplication: vectors **
+# #### calculate the element-wise multiplication of two vectors by hand and enter the result in the code cell below.  You'll later see that element-wise multiplication is the default method when two NumPy arrays are multiplied together.  Note we won't be performing element-wise multiplication in future labs, but we are introducing it here to distinguish it from other vector operators, and to because it is a common operations in NumPy, as we will discuss in Part (2b).
+# Manually calculate your answer and represent the vector as a list of integers values.
 z = [4, 10, 18]
 
 
@@ -27,21 +33,25 @@ Test.assertEqualsHashed(z, '4b5fe28ee2d274d7e0378bf993e28400f66205c2',
                         'incorrect value for vector z')
 
 
-# ** Dot product **
-# calculate the dot product of two vectors by hand and enter the result in the code cell below.  Note that the dot product is equivalent to performing element-wise multiplication and then summing the result.
+# #### ** Dot product **
+# #### calculate the dot product of two vectors by hand and enter the result in the code cell below.  Note that the dot product is equivalent to performing element-wise multiplication and then summing the result.
 
 # Manually calculate your answer and set the variables to their appropriate integer values.
 c1 = -11
 c2 = 26
 
 
+# In[6]:
+
 # TEST Dot product
 Test.assertEqualsHashed(c1, '8d7a9046b6a6e21d66409ad0849d6ab8aa51007c', 'incorrect value for c1')
 Test.assertEqualsHashed(c2, '887309d048beef83ad3eabf2a79a64a389ab1c9f', 'incorrect value for c2')
 
 
-# ** Matrix multiplication **
-# calculate the result of multiplying two matrices together by hand and enter the result in the code cell below.
+# #### ** Matrix multiplication **
+# #### calculate the result of multiplying two matrices together by hand and enter the result in the code cell below.
+# Represent matrices as lists within lists. For example, [[1,2,3], [4,5,6]] represents a matrix with
+# two rows and three columns. Use integer values.
 X = [[22, 28], [49, 64]]
 Y = [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
 
@@ -53,9 +63,11 @@ Test.assertEqualsHashed(Y, 'f985daf651531b7d776523836f3068d4c12e4519',
                         'incorrect value for matrix Y')
 
 
-# ** NumPy **
+# ### ** NumPy **
 
-# ** Scalar multiplication **
+# #### ** Scalar multiplication **
+
+# It is convention to import NumPy with the alias np
 import numpy as np
 
 # Create a numpy array with the values 1, 2, 3
@@ -69,8 +81,8 @@ print timesFive
 Test.assertTrue(np.all(timesFive == [5, 10, 15]), 'incorrect value for timesFive')
 
 
-# ** Element-wise multiplication and dot product **
-# NumPy arrays support both element-wise multiplication and dot product.  Element-wise multiplication occurs automatically when you use the `*` operator to multiply two `ndarray` objects of the same length.
+# #### ** Element-wise multiplication and dot product **
+# #### NumPy arrays support both element-wise multiplication and dot product.  Element-wise multiplication occurs automatically when you use the `*` operator to multiply two `ndarray` objects of the same length.
 # Create a ndarray based on a range and step size.
 u = np.arange(0, 5, .5)
 v = np.arange(5, 10, .5)
@@ -88,7 +100,7 @@ Test.assertTrue(np.all(elementWise == [ 0., 2.75, 6., 9.75, 14., 18.75, 24., 29.
 Test.assertEquals(dotProduct, 183.75, 'incorrect value for dotProduct')
 
 
-# ** Matrix math **
+# #### ** Matrix math **
 from numpy.linalg import inv
 
 A = np.matrix([[1,2,3,4],[5,6,7,8]])
@@ -114,9 +126,9 @@ Test.assertTrue(np.allclose(AAtInv, np.matrix([[0.54375, -0.21875], [-0.21875, 0
                 'incorrect value for AAtInv')
 
 
-# ** Additional NumPy and Spark linear algebra **
+# ### ** Additional NumPy and Spark linear algebra **
 
-# ** Slices **
+# #### ** Slices **
 features = np.array([1, 2, 3, 4])
 print 'features:\n{0}'.format(features)
 
@@ -129,7 +141,7 @@ print '\nlastThree:\n{0}'.format(lastThree)
 Test.assertTrue(np.all(lastThree == [2, 3, 4]), 'incorrect value for lastThree')
 
 
-# ** Combining `ndarray` objects **
+# #### ** Combining `ndarray` objects **
 zeros = np.zeros(8)
 ones = np.ones(8)
 print 'zeros:\n{0}'.format(zeros)
@@ -148,7 +160,7 @@ Test.assertTrue(np.all(zerosAboveOnes == [[0,0,0,0,0,0,0,0],[1,1,1,1,1,1,1,1]]),
                 'incorrect value for zerosAboveOnes')
 
 
-# ** PySpark's DenseVector **
+# #### ** PySpark's DenseVector **
 from pyspark.mllib.linalg import DenseVector
 
 numpyVector = np.array([-3, -4, 5])
@@ -169,9 +181,9 @@ Test.assertTrue(np.allclose(myDenseVector, np.array([3., 4., 5.])),
 Test.assertTrue(np.allclose(denseDotProduct, 0.0), 'incorrect value for denseDotProduct')
 
 
-# ** Python lambda expressions **
+# ### ** Python lambda expressions **
 
-# ** Lambda is an anonymous function **
+# #### ** Lambda is an anonymous function **
 # Example function
 def addS(x):
     return x + 's'
@@ -194,7 +206,7 @@ print '\n', multiplyByTen
 Test.assertEquals(multiplyByTen(10), 100, 'incorrect definition for multiplyByTen')
 
 
-# ** `lambda' uses fewer steps than `def` **
+# #### ** `lambda' uses fewer steps than `def` **
 
 # Code using def that we will recreate with lambdas
 def plus(x, y):
@@ -220,7 +232,7 @@ Test.assertEquals(lambdaFunctions[0](10, 10), 20, 'incorrect first lambdaFunctio
 Test.assertEquals(lambdaFunctions[1](10, 10), 0, 'incorrect second lambdaFunction')
 
 
-# ** Lambda expression arguments **
+# #### ** Lambda expression arguments **
 
 # One-parameter function
 a1 = lambda x: x[0] + x[1]
@@ -259,7 +271,7 @@ Test.assertEquals(swapOrder((1, 2, 3)), (2, 3, 1), 'incorrect definition fo swap
 Test.assertEquals(sumThree((1, 2), (3, 4), (5, 6)), (9, 12), 'incorrect definition for sumThree')
 
 
-# ** Restrictions on lambda expressions **
+# #### ** Restrictions on lambda expressions **
 
 # This code will fail with a syntax error, as we can't use print in a lambda expression
 import traceback
@@ -269,7 +281,7 @@ except:
     traceback.print_exc()
 
 
-# ** Functional programming **
+# #### ** Functional programming **
 
 # Create a class to give our examples the same syntax as PySpark
 class FunctionalWrapper(object):
@@ -331,8 +343,8 @@ Test.assertEquals(filterResult, FunctionalWrapper([0, 2, 4, 6, 8]),
 Test.assertEquals(reduceResult, 45, 'incorrect value for reduceResult')
 
 
-# ** Composability **
-# Since our methods for map and filter in the `FunctionalWrapper` class return `FunctionalWrapper` objects, we can compose (or chain) together our function calls.
+# #### ** Composability **
+# #### Since our methods for map and filter in the `FunctionalWrapper` class return `FunctionalWrapper` objects, we can compose (or chain) together our function calls.
 (dataset
  .map(lambda x: x + 2)
  .reduce(lambda x, y: x * y))
@@ -347,7 +359,7 @@ print finalSum
 Test.assertEquals(finalSum, 100, 'incorrect value for finalSum')
 
 
-# ** CTR data download **
+# ### ** CTR data download **
 
 from IPython.lib.display import IFrame
 
